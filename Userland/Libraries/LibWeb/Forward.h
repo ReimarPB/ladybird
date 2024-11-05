@@ -401,6 +401,7 @@ class ErrorEvent;
 class EventHandler;
 class EventLoop;
 class EventSource;
+class External;
 class FormAssociatedElement;
 class FormDataEvent;
 class History;

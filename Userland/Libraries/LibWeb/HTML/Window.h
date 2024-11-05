@@ -17,6 +17,7 @@
 #include <LibWeb/DOM/EventTarget.h>
 #include <LibWeb/Forward.h>
 #include <LibWeb/HTML/CrossOrigin/CrossOriginPropertyDescriptorMap.h>
+#include <LibWeb/HTML/External.h>
 #include <LibWeb/HTML/GlobalEventHandlers.h>
 #include <LibWeb/HTML/MimeType.h>
 #include <LibWeb/HTML/Navigable.h>
@@ -169,6 +170,7 @@ public:
 
     [[nodiscard]] JS::NonnullGCPtr<Navigator> navigator();
     [[nodiscard]] JS::NonnullGCPtr<CloseWatcherManager> close_watcher_manager();
+    [[nodiscard]] JS::NonnullGCPtr<External> external();
 
     void alert(String const& message = {});
     bool confirm(Optional<String> const& message);
@@ -279,6 +281,9 @@ private:
     JS::GCPtr<Navigator> m_navigator;
     JS::GCPtr<Location> m_location;
     JS::GCPtr<CloseWatcherManager> m_close_watcher_manager;
+
+    // https://html.spec.whatwg.org/multipage/obsolete.html#external
+    JS::GCPtr<External> m_external;
 
     // https://html.spec.whatwg.org/multipage/nav-history-apis.html#window-navigation-api
     JS::GCPtr<Navigation> m_navigation;

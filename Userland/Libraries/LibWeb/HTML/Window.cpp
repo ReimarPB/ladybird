@@ -38,6 +38,7 @@
 #include <LibWeb/HTML/DocumentState.h>
 #include <LibWeb/HTML/EventHandler.h>
 #include <LibWeb/HTML/EventLoop/EventLoop.h>
+#include <LibWeb/HTML/External.h>
 #include <LibWeb/HTML/Focus.h>
 #include <LibWeb/HTML/HTMLEmbedElement.h>
 #include <LibWeb/HTML/HTMLFormElement.h>
@@ -123,6 +124,7 @@ void Window::visit_edges(JS::Cell::Visitor& visitor)
     visitor.visit(m_location);
     visitor.visit(m_navigator);
     visitor.visit(m_navigation);
+    visitor.visit(m_external);
     visitor.visit(m_custom_element_registry);
     visitor.visit(m_animation_frame_callback_driver);
     visitor.visit(m_pdf_viewer_plugin_objects);
@@ -1654,6 +1656,16 @@ JS::NonnullGCPtr<Navigation> Window::navigation()
 
     // The navigation getter steps are to return this's navigation API.
     return *m_navigation;
+}
+
+// https://html.spec.whatwg.org/multipage/obsolete.html#external
+JS::NonnullGCPtr<External> Window::external()
+{
+    if (!m_external) {
+        m_external = heap().allocate<External>(realm(), realm());
+    }
+
+    return *m_external;
 }
 
 // https://html.spec.whatwg.org/multipage/custom-elements.html#dom-window-customelements

@@ -48,6 +48,7 @@ source_set("HTML") {
     "EventNames.cpp",
     "EventSource.cpp",
     "FileFilter.cpp",
+    "External.cpp",
     "Focus.cpp",
     "FormAssociatedElement.cpp",
     "FormControlInfrastructure.cpp",

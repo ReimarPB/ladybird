@@ -6,6 +6,7 @@
 #import <DOM/EventTarget.idl>
 #import <HTML/AnimationFrameProvider.idl>
 #import <HTML/CustomElements/CustomElementRegistry.idl>
+#import <HTML/External.idl>
 #import <HTML/History.idl>
 #import <HTML/Navigation.idl>
 #import <HTML/Navigator.idl>
@@ -109,6 +110,9 @@ interface Window : EventTarget {
 
     undefined captureEvents();
     undefined releaseEvents();
+
+    // https://html.spec.whatwg.org/multipage/obsolete.html#external
+    [Replaceable, SameObject] readonly attribute External external;
 
     // This function is non-standard.
     boolean find(optional DOMString string = "");

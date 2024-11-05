@@ -314,6 +314,7 @@ set(SOURCES
     HTML/EventNames.cpp
     HTML/FileFilter.cpp
     HTML/Focus.cpp
+    HTML/External.cpp
     HTML/FormAssociatedElement.cpp
     HTML/FormControlInfrastructure.cpp
     HTML/FormDataEvent.cpp

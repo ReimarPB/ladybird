@@ -54,6 +54,7 @@ static bool is_platform_object(Type const& type)
         "DynamicsCompressorNode"sv,
         "ElementInternals"sv,
         "EventTarget"sv,
+        "External"sv,
         "File"sv,
         "FileList"sv,
         "FontFace"sv,
