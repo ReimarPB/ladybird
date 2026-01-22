@@ -1316,6 +1316,21 @@ void BlockFormattingContext::layout_list_item_marker(ListItemBox const& list_ite
 
     auto offset_x = round(left_space_before_list_item_elements_formatted - marker_distance - marker_width);
     auto offset_y = round(max(CSSPixels(0), (marker.computed_values().line_height() - marker_height) / 2));
+
+    // Specifically <summary> elements have their marker placed immediately before the content rather than on the very left.
+    // This affects e.g. when text-align is something other than left.
+    if (list_item_box.dom_node().tag_name().equals_ignoring_ascii_case("summary"sv)) {
+        if (list_item_state.line_boxes.size() > 0) {
+            auto line_box = list_item_state.line_boxes.first();
+            if (line_box.fragments().size() > 0) {
+                auto fragment = line_box.fragments().first();
+
+                offset_x = fragment.offset().x() - marker_distance - marker_width;
+                offset_y += line_box.bottom() - marker.computed_values().line_height();
+            }
+        }
+    }
+
     marker_state.set_content_offset({ offset_x, offset_y });
 
     if (marker_height > list_item_state.content_height())
